@@ -3,7 +3,8 @@
 </script>
 
 <template>
- 
+ <!-- 一级路由组件 -->
+ <RouterView></RouterView>
 <main>
   <div class="mb-4">
     <el-button>Default</el-button>
