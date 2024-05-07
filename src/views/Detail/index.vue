@@ -1,4 +1,5 @@
 <script setup>
+import DetailHot from "@/views/Detail/components/DetailHot.vue";
 import { getDetail } from "@/apis/detail";
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
@@ -19,11 +20,11 @@ onMounted(() => getGoods())
             <div class="bread-container">
                 <el-breadcrumb separator=">">
                     <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-                    <el-breadcrumb-item
-                        :to="{ path: `/category/${goods.categories[1].id}` }">{{ goods.categories[1].name }}
+                    <el-breadcrumb-item :to="{ path: `/category/${goods.categories[1].id}` }">{{
+                        goods.categories[1].name }}
                     </el-breadcrumb-item>
-                    <el-breadcrumb-item
-                        :to="{ path: `/category/sub/${goods.categories[0].id}` }">{{ goods.categories[0].name }}
+                    <el-breadcrumb-item :to="{ path: `/category/sub/${goods.categories[0].id}` }">{{
+                        goods.categories[0].name }}
                     </el-breadcrumb-item>
                     <el-breadcrumb-item>抓绒保暖，毛毛虫子儿童运动鞋</el-breadcrumb-item>
                 </el-breadcrumb>
@@ -61,11 +62,11 @@ onMounted(() => getGoods())
                         </div>
                         <div class="spec">
                             <!-- 商品信息区 -->
-                            <p class="g-name">{{goods.name}} </p>
-                            <p class="g-desc">{{goods.desc}}  </p>
+                            <p class="g-name">{{ goods.name }} </p>
+                            <p class="g-desc">{{ goods.desc }} </p>
                             <p class="g-price">
-                                <span>{{goods.oldPrice}} </span>
-                                <span> {{goods.price}} </span>
+                                <span>{{ goods.oldPrice }} </span>
+                                <span> {{ goods.price }} </span>
                             </p>
                             <div class="g-service">
                                 <dl>
@@ -106,18 +107,21 @@ onMounted(() => getGoods())
                                     <!-- 属性 -->
                                     <ul class="attrs">
                                         <li v-for="item in goods.details.properties" :key="item.value">
-                                            <span class="dt">{{item.name}}</span>
-                                            <span class="dd">{{item.value}}</span>
+                                            <span class="dt">{{ item.name }}</span>
+                                            <span class="dd">{{ item.value }}</span>
                                         </li>
                                     </ul>
                                     <!-- 图片 -->
-<img v-for="img in goods.details.pictures" :src="img" :key="img" alt="">
+                                    <img v-for="img in goods.details.pictures" :src="img" :key="img" alt="">
                                 </div>
                             </div>
                         </div>
                         <!-- 24热榜+专题推荐 -->
                         <div class="goods-aside">
-
+                            <!-- 二十四小时热榜 -->
+                            <DetailHot></DetailHot>
+                            <!-- 周热榜 -->
+                            <DetailHot></DetailHot>
                         </div>
                     </div>
                 </div>
