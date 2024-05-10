@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       let nums = [0,1,0,3,12]
+       let len = nums.length;
+
+    // j 前存放都是不等于 0 的元素
+    let j = 0;
+    for (let i = 0; i < len; i++) {
+        if (nums[i] !== 0) {
+            let t = nums[i];
+            nums[i] = nums[j];
+            nums[j++] = t;
+        }
+    }
+
+    </script>
+</body>
+</html>
