@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useUserStore } from "@/stores/user";
 import { ElMessage } from "element-plus";
+import router from "@/router";
 import "element-plus/theme-chalk/el-message.css";
 
 const httpInstanc = axios.create({
@@ -14,11 +15,11 @@ const httpInstanc = axios.create({
 httpInstanc.interceptors.request.use(
   (config) => {
     // 从pinia中获取token数据
-    const userStore=useUserStore()
+    const userStore = useUserStore();
     // 按照后端的要求拼接token数据
-    const token = userStore.userInfo.token
+    const token = userStore.userInfo.token;
     if (token) {
-      config.headers.Authorization=`Bearer ${token}`
+      config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
@@ -29,11 +30,19 @@ httpInstanc.interceptors.request.use(
 httpInstanc.interceptors.response.use(
   (res) => res.data,
   (e) => {
+    const userStore = useUserStore();
     // 统一错误提示
     ElMessage({
-      type:'warning',
-      message:e.response.data.message
-    })
+      type: "warning",
+      message: e.response.data.message,
+    });
+    // 401 token过期拦截处理
+    // 清理用户过期数据
+    // 跳转到登录页面
+    if (e.response.status === 401) {
+      userStore.clearUserInfo()
+      router.push('/login')
+    }
     return Promise.reject(e);
   }
 );
