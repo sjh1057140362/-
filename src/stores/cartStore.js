@@ -54,6 +54,11 @@ export const useCartStore = defineStore(
       }
     };
 
+    // 清除购物车
+const clearCart=()=>{
+  cartList.value=[]
+}
+
     //单选功能
     const singleCheck = (skuId, selected) => {
       // 通过skuId找到要修改的哪一项 然后把她的selected修改为穿过来的selected
@@ -101,6 +106,7 @@ export const useCartStore = defineStore(
       isAll,
       selectedCount,
       selectedPrice,
+      clearCart,
       allCheck,
       addCart,
       delCart,
