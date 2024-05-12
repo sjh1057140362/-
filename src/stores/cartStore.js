@@ -106,6 +106,7 @@ const clearCart=()=>{
       isAll,
       selectedCount,
       selectedPrice,
+      updateNewList,
       clearCart,
       allCheck,
       addCart,

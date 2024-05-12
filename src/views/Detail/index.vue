@@ -18,7 +18,6 @@ onMounted(() => getGoods())
 // sku
 let skuObj = {}
 const skuChange = (sku) => {
-    console.log(sku);
     skuObj = sku
 }
 // count
@@ -40,12 +39,10 @@ const addCart = () => {
             attrsText:skuObj.specsText,//商品规格文本
             selected:true,//商品是否选中
         })
-        console.log('选择');
     } else {
         // 规格没有选择  
         // 提示用户
         ElMessage.warning('规格没有选择')
-        console.log('没有选择');
     }
 
 
