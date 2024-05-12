@@ -1,6 +1,6 @@
 // axios的基础封装
 import axios from "axios";
-import { useUserStore } from "@/stores/user";
+import { useUserStore } from "@/stores/userStore";
 import { ElMessage } from "element-plus";
 import router from "@/router";
 import "element-plus/theme-chalk/el-message.css";

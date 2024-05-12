@@ -1,6 +1,6 @@
 <script setup>
 
-import { useCategoryStore } from "@/stores/category";
+import { useCategoryStore } from "@/stores/categoryStore";
 import HeaderGouWuChe from './HeaderGouWuChe.vue'
 
 const categoryStore =  useCategoryStore()
