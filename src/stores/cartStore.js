@@ -31,6 +31,18 @@ export const useCartStore = defineStore(
 
       // 思路  2.使用数字的过滤方法
     };
+    //单选功能
+    const singleCheck = (skuId, selected) => {
+      // 通过skuId找到要修改的哪一项 然后把她的selected修改为穿过来的selected
+      const item = cartList.value.find((item) => item.skuId === skuId);
+      item.selected = selected;
+    };
+
+    // 全选功能
+    const allCheck = (selected) => {
+      // 把cartList中 每一项都设置为当前的全选框状态
+      cartList.value.forEach((item) => (item.selected = selected));
+    };
 
     // 计算属性
     // 1 总的数量 所有项的count之和
@@ -41,12 +53,18 @@ export const useCartStore = defineStore(
     const allPrice = computed(() =>
       cartList.value.reduce((a, c) => a + c.count * c.price, 0)
     );
+    // 是否全选
+    const isAll = computed(() => cartList.value.every((item) => item.selected));
+
     return {
       cartList,
       allCount,
       allPrice,
+      isAll,
       addCart,
       delCart,
+      singleCheck,
+      allCheck,
     };
   },
   {
